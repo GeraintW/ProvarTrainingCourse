@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" title="Salesforce Connect: Demo">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">Demo</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">Demo</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Global</value>
+        </argument>
+        <argument id="webBrowserType">
+          <value class="value" valueClass="string">Chrome</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="vfDebug"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="environment"/>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource url="excel:templates/Opportunity.xlsx?worksheet=Sheet1&amp;range=A1%3AE6&amp;namesLocation=FirstRowOfRange&amp;whereComparison=EqualTo" variableName="ExcelData" variableScope="Test">
+          <cacheToken>C:/Users/Geraint/Documents/workspace/DF6/Demo/templates/Opportunity.xlsx;1389101742322</cacheToken>
+          <cachedParameters>
+            <apiParam name="Id"/>
+            <apiParam name="Name"/>
+            <apiParam name="StageName"/>
+            <apiParam name="Probability"/>
+            <apiParam name="CloseDate"/>
+          </cachedParameters>
+        </parameterValueSource>
+      </parameterValueSources>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" title="For Each: {ExcelData}=&gt;Row">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="ExcelData"/>
+          </value>
+        </argument>
+        <argument id="fromItem"/>
+        <argument id="valueName">
+          <value class="value" valueClass="string">Row</value>
+        </argument>
+        <argument id="continueOnFailure"/>
+      </arguments>
+      <clauses>
+        <clause name="substeps">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" title="Create Object: Opportunity=&gt;OpportunityId">
+              <arguments>
+                <argument id="objectType">
+                  <value class="value" valueClass="string">Opportunity</value>
+                </argument>
+                <argument id="resultIdName">
+                  <value class="value" valueClass="string">OpportunityId</value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">Demo</value>
+                </argument>
+                <argument id="Name">
+                  <value class="variable">
+                    <path element="Row"/>
+                    <path element="Name"/>
+                  </value>
+                </argument>
+                <argument id="StageName">
+                  <value class="variable">
+                    <path element="Row"/>
+                    <path element="StageName"/>
+                  </value>
+                </argument>
+                <argument id="Probability">
+                  <value class="variable">
+                    <path element="Row"/>
+                    <path element="Probability"/>
+                  </value>
+                </argument>
+                <argument id="CloseDate">
+                  <value class="variable">
+                    <path element="Row"/>
+                    <path element="CloseDate"/>
+                  </value>
+                </argument>
+                <argument id="ForecastCategoryName">
+                  <value class="value" valueClass="string">Pipeline</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+              <parameterGeneratorProperties>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">Demo</propertyValue>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">Opportunity</propertyValue>
+              </parameterGeneratorProperties>
+              <generatedParameters>
+                <apiParam group="fields" name="Name" title="Name">
+                  <type>
+                    <textType>
+                      <constraints>
+                        <valueConstraint name="maxLength">120</valueConstraint>
+                        <valueConstraint name="maxLines">1</valueConstraint>
+                      </constraints>
+                    </textType>
+                  </type>
+                </apiParam>
+                <apiParam group="fields" name="StageName" title="StageName">
+                  <type>
+                    <choiceType>
+                      <constraints>
+                        <valueConstraint name="boundedValues">Prospecting:Prospecting|Qualification:Qualification|Needs Analysis:Needs Analysis|Value Proposition:Value Proposition|Id. Decision Makers:Id. Decision Makers|Perception Analysis:Perception Analysis|Proposal/Price Quote:Proposal/Price Quote|Negotiation/Review:Negotiation/Review|Closed Won:Closed Won|Closed Lost:Closed Lost</valueConstraint>
+                        <valueConstraint name="unrestricted">true</valueConstraint>
+                      </constraints>
+                    </choiceType>
+                  </type>
+                </apiParam>
+                <apiParam group="fields" name="Probability" title="Probability">
+                  <type>
+                    <numericType>
+                      <constraints>
+                        <valueConstraint name="length">3</valueConstraint>
+                        <valueConstraint name="decimalPlaces">0</valueConstraint>
+                      </constraints>
+                    </numericType>
+                  </type>
+                </apiParam>
+                <apiParam group="fields" name="CloseDate" title="CloseDate">
+                  <type>
+                    <dateType/>
+                  </type>
+                </apiParam>
+                <apiParam group="fields" name="ForecastCategoryName" title="ForecastCategoryName">
+                  <type>
+                    <choiceType>
+                      <constraints>
+                        <valueConstraint name="boundedValues">Omitted:Omitted|Pipeline:Pipeline|Best Case:Best Case|Commit:Commit|Closed:Closed</valueConstraint>
+                      </constraints>
+                    </choiceType>
+                  </type>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" title="Set Values: Opp{Row.Id}">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList">
+                    <namedValues>
+                      <namedValue name="valuePath">
+                        <value class="compound">
+                          <parts>
+                            <value valueClass="string">Opp</value>
+                            <variable>
+                              <path element="Row"/>
+                              <path element="Id"/>
+                            </variable>
+                          </parts>
+                        </value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="variable">
+                          <path element="OpportunityId"/>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+</testCase>

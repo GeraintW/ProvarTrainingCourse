@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase>
+  <steps>
+    <apiCall apiId="com.provar.plugins.bundled.apis.string.Split" name="Split" title="Split: templates/template 1.xml=&gt;,=&gt;Tokens">
+      <arguments>
+        <argument id="input">
+          <value class="template">templates/template 1.xml</value>
+        </argument>
+        <argument id="separator">
+          <value class="value" valueClass="string">,</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">Tokens</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Folder</value>
+        </argument>
+      </arguments>
+    </apiCall>
+  </steps>
+</testCase>

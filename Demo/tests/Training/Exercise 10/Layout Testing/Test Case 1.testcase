@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="2">
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" title="Salesforce Connect: ApexConnection">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">Demo</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">ApexConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Global</value>
+        </argument>
+        <argument id="webBrowserType">
+          <value class="value" valueClass="string">Chrome</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="vfDebug"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="environment"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexExtractLayout" name="ApexExtractLayout" title="Extract Salesforce Layout=&gt;Opportunity">
+      <arguments>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">ApexConnection</value>
+        </argument>
+        <argument id="objectName">
+          <value class="value" valueClass="string">Opportunity</value>
+        </argument>
+        <argument id="includeFieldPermissions">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="dataUrl">
+          <value class="value" valueClass="string">excel:Opportunityworkbook.xlsx</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexAssertLayout" name="ApexAssertLayout" title="Assert Salesforce Layout=&gt;Opportunity">
+      <arguments>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">ApexConnection</value>
+        </argument>
+        <argument id="objectName">
+          <value class="value" valueClass="string">Opportunity</value>
+        </argument>
+        <argument id="dataUrl">
+          <value class="value" valueClass="string">excel:Opportunityworkbook.xlsx</value>
+        </argument>
+        <argument id="includeFieldPermissions"/>
+        <argument id="reportUnmatchedExpectedRecordTypes">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reportUnmatchedActualRecordTypes">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reportUnmatchedExpectedFields">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reportUnmatchedActualFields">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+      </arguments>
+    </apiCall>
+  </steps>
+</testCase>

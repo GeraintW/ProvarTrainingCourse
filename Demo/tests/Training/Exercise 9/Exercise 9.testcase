@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="44">
+  <steps>
+    <apiCall apiId="customapis.FahrenheitToCelcius2" name="FahrenheitToCelcius2" title="Fahrenheit To Celcius 2: ⇒ test">
+      <arguments>
+        <argument id="Fahrenheit">
+          <value class="value" valueClass="decimal">12</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">test</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+  </steps>
+</testCase>

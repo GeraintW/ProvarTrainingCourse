@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="1">
+  <steps>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" title="If: {Count(Tokens) = 4} ">
+      <arguments>
+        <argument id="condition">
+          <value class="compound">
+            <parts>
+              <eq>
+                <lhs class="funcCall" id="Count">
+                  <argument id="value">
+                    <value class="variable">
+                      <path element="Tokens"/>
+                    </value>
+                  </argument>
+                </lhs>
+                <rhs class="value" valueClass="decimal">4</rhs>
+              </eq>
+              <value valueClass="string"> </value>
+            </parts>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" title="For Each: {Tokens}=&gt;Iteration">
+              <arguments>
+                <argument id="list">
+                  <value class="variable">
+                    <path element="Tokens"/>
+                  </value>
+                </argument>
+                <argument id="fromItem"/>
+                <argument id="valueName">
+                  <value class="value" valueClass="string">Iteration</value>
+                </argument>
+                <argument id="continueOnFailure"/>
+              </arguments>
+              <clauses>
+                <clause name="substeps">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" title="Set Values: MyVariable, MyVar2, MyVar3">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList">
+                            <namedValues>
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">MyVariable</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="compound">
+                                  <parts>
+                                    <value valueClass="string">I can write text with variables within the Expression editor, Iteration = </value>
+                                    <variable>
+                                      <path element="Iteration"/>
+                                    </variable>
+                                  </parts>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                            <namedValues>
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">MyVar2</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="compound">
+                                  <parts>
+                                    <value valueClass="string">I can also refer to lists </value>
+                                    <variable>
+                                      <path element="Tokens">
+                                        <filter class="index">
+                                          <index valueClass="decimal">0</index>
+                                        </filter>
+                                      </path>
+                                    </variable>
+                                  </parts>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                            <namedValues>
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">MyVar3</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="compound">
+                                  <parts>
+                                    <value valueClass="string">Or perform calculations </value>
+                                    <mult>
+                                      <lhs class="value" valueClass="decimal">2</lhs>
+                                      <rhs class="value" valueClass="decimal">3</rhs>
+                                    </mult>
+                                  </parts>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+</testCase>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="10">
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" title="Salesforce Connect: Demo">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">Demo</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">Demo</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Global</value>
+        </argument>
+        <argument id="webBrowserType">
+          <value class="value" valueClass="string">Chrome</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="vfDebug"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="environment"/>
+      </arguments>
+      <expectedExceptions/>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" title="Create Object: Opportunity=&gt;OpportunityId">
+      <arguments>
+        <argument id="objectType">
+          <value class="value" valueClass="string">Opportunity</value>
+        </argument>
+        <argument id="resultIdName">
+          <value class="value" valueClass="string">OpportunityId</value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">Demo</value>
+        </argument>
+        <argument id="AccountId">
+          <value class="value" valueClass="string">001b000000H9W3kAAF</value>
+        </argument>
+        <argument id="Name">
+          <value class="value" valueClass="string">Edge SLA</value>
+        </argument>
+        <argument id="StageName">
+          <value class="value" valueClass="string">Closed Won</value>
+        </argument>
+        <argument id="Amount">
+          <value class="value" valueClass="decimal">1000001</value>
+        </argument>
+        <argument id="Probability">
+          <value class="value" valueClass="decimal">100.0</value>
+        </argument>
+        <argument id="CloseDate">
+          <value class="value" valueClass="date">1317427200000</value>
+        </argument>
+        <argument id="Type">
+          <value class="value" valueClass="string">Existing Customer - Upgrade</value>
+        </argument>
+        <argument id="LeadSource">
+          <value class="value" valueClass="string">Phone Inquiry</value>
+        </argument>
+        <argument id="ForecastCategoryName">
+          <value class="value" valueClass="string">Closed</value>
+        </argument>
+        <argument id="OrderNumber__c">
+          <value class="value" valueClass="string">847564</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+      <expectedExceptions>
+        <expectedException comparisonType="Contains" title="Amount fail">
+          <assertionValue class="value" valueClass="string">Amount cannot exceed $1M</assertionValue>
+        </expectedException>
+      </expectedExceptions>
+      <parameterGeneratorProperties>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">Demo</propertyValue>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">Opportunity</propertyValue>
+      </parameterGeneratorProperties>
+      <generatedParameters>
+        <apiParam group="fields" name="AccountId" title="AccountId">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+        <apiParam group="fields" name="Name" title="Name">
+          <type>
+            <textType>
+              <constraints>
+                <valueConstraint name="maxLength">120</valueConstraint>
+                <valueConstraint name="maxLines">1</valueConstraint>
+              </constraints>
+            </textType>
+          </type>
+        </apiParam>
+        <apiParam group="fields" name="StageName" title="StageName">
+          <type>
+            <choiceType>
+              <constraints>
+                <valueConstraint name="boundedValues">Prospecting:Prospecting|Qualification:Qualification|Needs Analysis:Needs Analysis|Value Proposition:Value Proposition|Id. Decision Makers:Id. Decision Makers|Perception Analysis:Perception Analysis|Proposal/Price Quote:Proposal/Price Quote|Negotiation/Review:Negotiation/Review|Closed Won:Closed Won|Closed Lost:Closed Lost</valueConstraint>
+                <valueConstraint name="unrestricted">true</valueConstraint>
+              </constraints>
+            </choiceType>
+          </type>
+        </apiParam>
+        <apiParam group="fields" name="Amount" title="Amount">
+          <type>
+            <numericType>
+              <constraints>
+                <valueConstraint name="length">18</valueConstraint>
+                <valueConstraint name="decimalPlaces">2</valueConstraint>
+              </constraints>
+            </numericType>
+          </type>
+        </apiParam>
+        <apiParam group="fields" name="Probability" title="Probability">
+          <type>
+            <numericType>
+              <constraints>
+                <valueConstraint name="length">3</valueConstraint>
+                <valueConstraint name="decimalPlaces">0</valueConstraint>
+              </constraints>
+            </numericType>
+          </type>
+        </apiParam>
+        <apiParam group="fields" name="CloseDate" title="CloseDate">
+          <type>
+            <dateType/>
+          </type>
+        </apiParam>
+        <apiParam group="fields" name="Type" title="Type">
+          <type>
+            <choiceType>
+              <constraints>
+                <valueConstraint name="boundedValues">Existing Customer - Upgrade:Existing Customer - Upgrade|Existing Customer - Replacement:Existing Customer - Replacement|Existing Customer - Downgrade:Existing Customer - Downgrade|New Customer:New Customer</valueConstraint>
+                <valueConstraint name="unrestricted">true</valueConstraint>
+              </constraints>
+            </choiceType>
+          </type>
+        </apiParam>
+        <apiParam group="fields" name="LeadSource" title="LeadSource">
+          <type>
+            <choiceType>
+              <constraints>
+                <valueConstraint name="boundedValues">Web:Web|Phone Inquiry:Phone Inquiry|Partner Referral:Partner Referral|Purchased List:Purchased List|Other:Other</valueConstraint>
+                <valueConstraint name="unrestricted">true</valueConstraint>
+              </constraints>
+            </choiceType>
+          </type>
+        </apiParam>
+        <apiParam group="fields" name="ForecastCategoryName" title="ForecastCategoryName">
+          <type>
+            <choiceType>
+              <constraints>
+                <valueConstraint name="boundedValues">Omitted:Omitted|Pipeline:Pipeline|Best Case:Best Case|Commit:Commit|Closed:Closed</valueConstraint>
+              </constraints>
+            </choiceType>
+          </type>
+        </apiParam>
+        <apiParam group="fields" name="OrderNumber__c" title="OrderNumber__c">
+          <type>
+            <textType>
+              <constraints>
+                <valueConstraint name="maxLength">8</valueConstraint>
+                <valueConstraint name="maxLines">1</valueConstraint>
+              </constraints>
+            </textType>
+          </type>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+  </steps>
+</testCase>

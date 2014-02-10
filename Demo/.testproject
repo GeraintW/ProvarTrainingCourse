@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testProject selectedEnvironment="SIT">
+  <title>/Demo/.testproject</title>
+  <configPath>config</configPath>
+  <testsPath>tests</testsPath>
+  <templatesPath>templates</templatesPath>
+  <sourcePath>src</sourcePath>
+  <secureStoragePath>.secrets</secureStoragePath>
+  <browserDebugPort>0</browserDebugPort>
+  <jdbcDrivers>
+    <jdbcDriver driverClass="oracle.jdbc.OracleDriver" name="Oracle" title="Oracle"/>
+    <jdbcDriver driverClass="com.mysql.jdbc.Driver" name="MySQL" title="MySQL"/>
+  </jdbcDrivers>
+  <environments>
+    <environment name="UAT">
+      <summary>User testing Environment</summary>
+    </environment>
+    <environment name="SIT">
+      <summary>System Integration Test</summary>
+    </environment>
+  </environments>
+  <variables>
+    <testVariable name="UserCode">
+      <valueType class="numericType">
+        <constraints>
+          <valueConstraint name="length">10</valueConstraint>
+          <valueConstraint name="decimalPlaces">2</valueConstraint>
+          <valueConstraint name="unsigned">false</valueConstraint>
+          <valueConstraint name="showSeparator">false</valueConstraint>
+        </constraints>
+      </valueType>
+      <summary/>
+      <values>
+        <testVariableValue>
+          <value class="value" referenceCount="20" valueClass="decimal">10</value>
+        </testVariableValue>
+        <testVariableValue envName="UAT">
+          <value class="value" referenceCount="144" valueClass="decimal">20</value>
+        </testVariableValue>
+      </values>
+    </testVariable>
+    <testVariable name="LoginRef">
+      <valueType class="numericType">
+        <constraints>
+          <valueConstraint name="length">10</valueConstraint>
+          <valueConstraint name="decimalPlaces">2</valueConstraint>
+          <valueConstraint name="unsigned">false</valueConstraint>
+          <valueConstraint name="showSeparator">false</valueConstraint>
+        </constraints>
+      </valueType>
+      <summary/>
+      <values>
+        <testVariableValue>
+          <value class="value" referenceCount="18" valueClass="decimal">30</value>
+        </testVariableValue>
+        <testVariableValue envName="UAT">
+          <value class="value" referenceCount="137" valueClass="decimal">40</value>
+        </testVariableValue>
+      </values>
+    </testVariable>
+  </variables>
+  <configurationItems>
+    <configurationItem name="forcedotcomorgs" title="Salesforce Orgs"/>
+  </configurationItems>
+  <connectionClasses>
+    <connectionClass name="sf">
+      <connections>
+        <connection name="Demo">
+          <summary/>
+          <connectionUrls>
+            <connectionUrl secureStorageNodeId="25bff0b5-7426-4e34-90d7-fcf3947599a8" url="sf:user=df13@makepositive.com;password={password};environment=PROD_DEV"/>
+          </connectionUrls>
+        </connection>
+      </connections>
+    </connectionClass>
+    <connectionClass name="ui">
+      <connections>
+        <connection name="bbc">
+          <summary/>
+          <connectionUrls>
+            <connectionUrl url="se:browser=Firefox;baseUrl=http://bbc.com"/>
+          </connectionUrls>
+        </connection>
+        <connection name="GoogleUI">
+          <summary/>
+          <connectionUrls>
+            <connectionUrl url="se:browser=Chrome;baseUrl=http://www.google.com"/>
+          </connectionUrls>
+        </connection>
+      </connections>
+    </connectionClass>
+    <connectionClass name="google">
+      <connections>
+        <connection name="Google">
+          <summary/>
+          <connectionUrls>
+            <connectionUrl secureStorageNodeId="ca45c340-e2b4-4fa2-9769-4bd19bc0ff05" url="google:user=geraintwaters@gmail.com;accessToken={accessToken};refreshToken={refreshToken};expiry=1391398346099"/>
+          </connectionUrls>
+        </connection>
+      </connections>
+    </connectionClass>
+  </connectionClasses>
+</testProject>
