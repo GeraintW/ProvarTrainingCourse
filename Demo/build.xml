@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="Provar" basedir="." default="compile" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
 
+	<path id="provar-classpath">
+	  <fileset dir="${com.provar.home}/lib">
+	    <include name="*.jar"/>
+	  </fileset>
+	</path>
+
+
     <target name="compile" description="Compile Provar Custom APIs and Page Objects">		
+
+		<mkdir dir="bin"/>
 
 		<javac srcdir="src"
          	   destdir="bin"
-         	   classpath="${com.provar.home/lib/*.jar}"
          	   debug="on"
-         	   source="1.7"/>
+         	   failonerror="false"
+         	   source="1.7">
+
+		     <classpath refid="provar-classpath"/>
+
+         </javac>
+
       </target>
 
 </project>
